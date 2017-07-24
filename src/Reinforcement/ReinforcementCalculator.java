@@ -9,12 +9,12 @@ import java.util.Random;
 public class ReinforcementCalculator {
 
     Random rand=new Random(3);
-    double jumpProb=0.2;
+    double jumpProb=0.01;
     double alpha=0.5;//learning rate
-    double lambda=0.8;
+    double lambda=0.9;
     static int maxActionNum=2;
     static int maxStateNum=15;
-    int episode=15;
+    int episode=50;
     ArrayList<Action> actions;
     ArrayList<State> states;
     State currentState;
