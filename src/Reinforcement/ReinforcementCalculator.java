@@ -8,6 +8,7 @@ import java.util.Random;
  */
 public class ReinforcementCalculator {
 
+    Random rand=new Random(3);
     double jumpProb=0.2;
     double alpha=0.5;//learning rate
     double lambda=0.8;
@@ -89,7 +90,7 @@ public class ReinforcementCalculator {
     }
     double chooseAction()
     {
-        Random rand=new Random(2);
+
         double maxScore=0;
 
         Action actionIndex=null;
