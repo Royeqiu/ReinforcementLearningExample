@@ -9,7 +9,7 @@ import java.util.Random;
 public class ReinforcementCalculator {
 
     Random rand=new Random(3);
-    double jumpProb=0.01;
+    double jumpProb=0.05;
     double alpha=0.5;//learning rate
     double lambda=0.9;
     static int maxActionNum=2;
@@ -40,9 +40,9 @@ public class ReinforcementCalculator {
             {
                 double currentReward=chooseAction();
                 double terminalReward=getFeedBack();
-                double nextActionReward= getNextActionReward(nextState);
-                double predictReward=terminalReward+nextActionReward;
-                double updateReward=currentReward+alpha*(lambda*predictReward-currentReward);
+                double nextActionReward=getNextActionReward(nextState);
+                double predictReward=nextActionReward;
+                double updateReward=currentReward+alpha*(terminalReward+lambda*predictReward-currentReward);
                 updateQTable(currentStateActionPair, updateReward);
                 updateEnvironment();
                 step++;
