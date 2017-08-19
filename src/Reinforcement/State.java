@@ -13,7 +13,10 @@ public class State {
         this.stateName=stateName;
         this.stateNum=stateNum;
     }
+    State()
+    {
 
+    }
     public String getStateName() {
         return stateName;
     }

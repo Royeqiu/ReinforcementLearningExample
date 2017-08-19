@@ -8,10 +8,18 @@ import java.util.Hashtable;
  */
 public class QTable {
 
+    public Hashtable<StateActionPair, Double> getActionScore() {
+        return actionScore;
+    }
+
     Hashtable<StateActionPair,Double> actionScore;
     QTable(ArrayList<State> states,ArrayList<Action> actions)
     {
         initQTable(states,actions);
+    }
+    boolean containsKey(StateActionPair stateActionPair)
+    {
+        return actionScore.containsKey(stateActionPair);
     }
     void initQTable(ArrayList<State> states,ArrayList<Action> actions)
     {
@@ -37,6 +45,7 @@ public class QTable {
     }
     void updateScore(StateActionPair stateActionPair,double updateScore)
     {
+
         actionScore.put(stateActionPair,updateScore);
     }
 }

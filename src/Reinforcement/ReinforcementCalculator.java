@@ -24,12 +24,18 @@ public class ReinforcementCalculator {
     QTable qTable;
     public ReinforcementCalculator()
     {
+        actions=new ArrayList<>();
+        states=new ArrayList<>();
+        currentStateActionPair=new StateActionPair();
+        isFinish=false;
+        nextState=null;
         init();
         qTable=new QTable(states,actions);
-        //qTable.showQTable();
+
+    }
+    public void start()
+    {
         int step;
-
-
         for(int i=0;i<episode;i++)
         {
             step=0;
@@ -51,21 +57,19 @@ public class ReinforcementCalculator {
 
         }
         qTable.showQTable();
-}
+    }
+
     void init()
     {
         loadState();
         loadAction();
-        isFinish=false;
-        currentStateActionPair=new StateActionPair();
         currentState=states.get(0);
         currentStateActionPair.setState(currentState);
-        nextState=null;
-    }
 
-    void loadAction()
+    }
+    protected void loadAction()
     {
-        actions=new ArrayList<>();
+        System.out.println("@@");
         String actionName;
         for(int i=0;i<maxActionNum;i++)
         {
@@ -80,9 +84,9 @@ public class ReinforcementCalculator {
             actions.add(new Action(actionName,i));
         }
     }
-    void loadState()
+    protected void loadState()
     {
-        states=new ArrayList<>();
+
         for(int i=0;i<maxStateNum;i++)
         {
            states.add(new State(Integer.toString(i),i));
@@ -175,7 +179,7 @@ public class ReinforcementCalculator {
     {
         qTable.updateScore(stateActionPair,updateReward);
     }
-    void updateEnvironment()
+    private void updateEnvironment()
     {
         currentState=nextState;
         currentStateActionPair.setState(currentState);
